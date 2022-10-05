@@ -122,7 +122,6 @@ const Header = () => {
                   <button className="optionCounterButton">-</button>
                   <spna className="optionCounterNumber">1</spna>
                   <button className="optionCounterButton">+</button>
-                  
                 </div>
               </div>
             </div>
