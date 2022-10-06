@@ -31,6 +31,14 @@ const Header = () => {
     children: 0,
     room: 1,
   });
+  const handleOption = (name, operation) => {
+    setOptions((prev) => {
+      return {
+        ...prev,
+        [name]: operation === "i" ? options[name] + 1 : options[name] - 1,
+      };
+    });
+  };
 
   return (
     <div className="header">
@@ -103,25 +111,60 @@ const Header = () => {
               <div className="optionItem">
                 <span className="optionText">Adult</span>
                 <div className="optionCounter">
-                  <button className="optionCounterButton">-</button>
-                  <spna className="optionCounterNumber">1</spna>
-                  <button className="optionCounterButton">+</button>
+                  <button
+                    disabled={options.adult <= 1}
+                    className="optionCounterButton"
+                    onClick={() => handleOption("adult", "d")}
+                  >
+                    -
+                  </button>
+                  <spna className="optionCounterNumber">{options.adult}</spna>
+                  <button
+                    className="optionCounterButton"
+                    onClick={() => handleOption("adult", "i")}
+                  >
+                    +
+                  </button>
                 </div>
               </div>
               <div className="optionItem">
                 <span className="optionText">Children</span>
                 <div className="optionCounter">
-                  <button className="optionCounterButton">-</button>
-                  <spna className="optionCounterNumber">0</spna>
-                  <button className="optionCounterButton">+</button>
+                  <button
+                    disabled={options.children <= 0}
+                    className="optionCounterButton"
+                    onClick={() => handleOption("children", "d")}
+                  >
+                    -
+                  </button>
+                  <spna className="optionCounterNumber">
+                    {options.children}
+                  </spna>
+                  <button
+                    className="optionCounterButton"
+                    onClick={() => handleOption("children", "i")}
+                  >
+                    +
+                  </button>
                 </div>
               </div>
               <div className="optionItem">
                 <span className="optionText">Room</span>
                 <div className="optionCounter">
-                  <button className="optionCounterButton">-</button>
-                  <spna className="optionCounterNumber">1</spna>
-                  <button className="optionCounterButton">+</button>
+                  <button
+                    disabled={options.room <= 1}
+                    className="optionCounterButton"
+                    onClick={() => handleOption("room", "d")}
+                  >
+                    -
+                  </button>
+                  <spna className="optionCounterNumber">{options.room}</spna>
+                  <button
+                    className="optionCounterButton"
+                    onClick={() => handleOption("room", "i")}
+                  >
+                    +
+                  </button>
                 </div>
               </div>
             </div>
