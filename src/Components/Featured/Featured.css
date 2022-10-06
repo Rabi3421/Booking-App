@@ -12,6 +12,7 @@
     border-radius: 10px;
     overflow: hidden;
     height: 200px;
+    flex: 1;
 }
 .featuredImg{
     width: 100%;
