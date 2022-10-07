@@ -16,6 +16,7 @@
     border-radius: 10px;
     position: sticky;
     top: 10px;
+    height: max-content;
 }
 .lsItem{
     display: flex;
