@@ -15,8 +15,10 @@ import { useState } from "react";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { format } from "date-fns";
+import { useNavigate } from "react-router-dom";
 
 const Header = ({ type }) => {
+  const [destination, setDestination] = useState("");
   const [openDate, setOpenDate] = useState(false);
   const [date, setDate] = useState([
     {
@@ -31,6 +33,7 @@ const Header = ({ type }) => {
     children: 0,
     room: 1,
   });
+  const navigate = useNavigate();
   const handleOption = (name, operation) => {
     setOptions((prev) => {
       return {
@@ -39,10 +42,17 @@ const Header = ({ type }) => {
       };
     });
   };
+  const handleSearch = () => {
+    navigate("/hotels", { state: { destination, date, options } });
+  };
 
   return (
     <div className="header">
-      <div className={type === "list" ? "headerContainer listMode" : "headerContainer"}>
+      <div
+        className={
+          type === "list" ? "headerContainer listMode" : "headerContainer"
+        }
+      >
         <div className="headerList">
           <div className="headerListItem active">
             <FontAwesomeIcon icon={faBed} />
@@ -69,7 +79,7 @@ const Header = ({ type }) => {
             <span>Airpot Taxis</span>
           </div>
         </div>
-        { type !== "list" &&
+        {type !== "list" && (
           <>
             <h1 className="headerTitle#">Find your next stay</h1>
             <p className="headerDesc">
@@ -83,11 +93,11 @@ const Header = ({ type }) => {
                   type="text"
                   placeholder="Where are you going?"
                   className="headerSearchInput"
+                  onChange={ e => setDestination(e.target.value)}
                 />
               </div>
               <div className="headerSearchItem">
                 <FontAwesomeIcon
-                  fro
                   icon={faCalendarDays}
                   className="headerIcon"
                 />
@@ -130,9 +140,9 @@ const Header = ({ type }) => {
                         >
                           -
                         </button>
-                        <spna className="optionCounterNumber">
+                        <span className="optionCounterNumber">
                           {options.adult}
-                        </spna>
+                        </span>
                         <button
                           className="optionCounterButton"
                           onClick={() => handleOption("adult", "i")}
@@ -151,9 +161,9 @@ const Header = ({ type }) => {
                         >
                           -
                         </button>
-                        <spna className="optionCounterNumber">
+                        <span className="optionCounterNumber">
                           {options.children}
-                        </spna>
+                        </span>
                         <button
                           className="optionCounterButton"
                           onClick={() => handleOption("children", "i")}
@@ -172,9 +182,9 @@ const Header = ({ type }) => {
                         >
                           -
                         </button>
-                        <spna className="optionCounterNumber">
+                        <span className="optionCounterNumber">
                           {options.room}
-                        </spna>
+                        </span>
                         <button
                           className="optionCounterButton"
                           onClick={() => handleOption("room", "i")}
@@ -187,11 +197,13 @@ const Header = ({ type }) => {
                 )}
               </div>
               <div className="headerSearchItem">
-                <button className="headerBtn">Search</button>
+                <button className="headerBtn" onClick={handleSearch}>
+                  Search
+                </button>
               </div>
             </div>
           </>
-        }
+        )}
       </div>
     </div>
   );
