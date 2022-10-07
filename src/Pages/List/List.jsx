@@ -2,11 +2,16 @@ import './List.css'
 import Header from '../../Components/Header/Header'
 import Navbar from '../../Components/Navbar/Navbar'
 import { useLocation } from 'react-router-dom'
+import { useState } from 'react'
 
 
 const List = () => {
   const location = useLocation();
-  console.log(location)
+  // console.log(location)
+  const [destination, setDestination] = useState(location.state.location)
+  const [date, setDate] = useState(location.state.date)
+  const [options, setOptions] = useState(location.state.options)
+
   return (
     <div>
       <Navbar />
@@ -21,7 +26,7 @@ const List = () => {
             </div>
             <div className='lsItem'>
               <label>Check-In Date</label>
-              <input type="text"/>
+              <span></span>
             </div>
           </div>
           <div className='listResult'></div>
