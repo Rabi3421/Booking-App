@@ -91,7 +91,7 @@ const Hotel = () => {
           <span className="hotelDistance">
             Excellent location – 500m from center
           </span>
-          <span className="hotelPriceHighlight">
+          <span className="hotelPriceHighLight">
             Book a stay over $114 at this property and get a free airport taxi
           </span>
           <div className="hotelImages">
